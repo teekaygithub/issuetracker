@@ -1,0 +1,46 @@
+body {
+    background-color: rgb(127,255,127);
+    font-family: arial;
+}
+
+#navigation {
+    overflow: hidden;
+    border: 1px solid;
+    background-color: #333;
+}
+
+#navigation a {
+    float: right;
+    display: block;
+    padding: 14px 16px;
+    color: #f2f2f2;
+    text-decoration: none;
+}
+
+#container {
+    text-align: center;
+}
+
+#GET {
+    margin: 20px auto;
+    padding: 20px;
+    border: 3px solid;
+    border-radius: 5px;
+    width: 500px;
+}
+
+#POST {
+    margin: 20px auto;
+    padding: 20px;
+    border: 3px solid;
+    border-radius: 5px;
+    width: 500px;
+}
+
+#DELETE {
+    margin: 20px auto;
+    padding: 20px;
+    border: 3px solid;
+    border-radius: 5px;
+    width: 500px;
+}
