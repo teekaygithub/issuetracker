@@ -36,6 +36,7 @@ public class ReadTicketsServlet extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
+            out.println("<a href=\"index.html\">Back to Home</a>");
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (URISyntaxException use) {
