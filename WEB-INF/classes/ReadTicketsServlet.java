@@ -9,7 +9,7 @@ public class ReadTicketsServlet extends HttpServlet {
     private String message;
     
     public void init() throws ServletException {
-        message = "Hello World";
+        message = "Your project tickets";
     }
     
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,21 +21,28 @@ public class ReadTicketsServlet extends HttpServlet {
         Connection conn = null;
         Statement stmt = null;
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = ReadTicketsServlet.getConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM project";
+            sql = "SELECT * FROM issuetracker";
             ResultSet rs = stmt.executeQuery(sql);
             
+            out.println("<table border='2'></th><th>Ticket Name</th><th>Status</th></tr>");
             while (rs.next()) {
-                out.println("<p>"+rs.getString("name")+"</p>");
+                out.println("<tr>");
+                out.println("<td>"+rs.getString("name")+"</td>");
+                out.println("<td>"+rs.getString("status")+"</td>");
+                out.println("</tr>");
             }
+            out.println("</table>");
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (URISyntaxException use) {
             use.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        out.println("<p>wat</p>");
         System.out.println("GET request complete.");
     }
     
