@@ -14,18 +14,18 @@
         <servlet-name>ReadTicketsServlet</servlet-name>
         <servlet-class>ReadTicketsServlet</servlet-class>
     </servlet>
-    <!-- <servlet> -->
-        <!-- <servlet-name>FirstExampleServlet</servlet-name> -->
-        <!-- <servlet-class>FirstExample</servlet-class> -->
-    <!-- </servlet> -->
+    <servlet>
+        <servlet-name>CreateTicketsServlet</servlet-name>
+        <servlet-class>CreateTicketsServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>ReadTicketsServlet</servlet-name>
         <url-pattern>/tickets</url-pattern>
     </servlet-mapping>
-    <!-- <servlet-mapping> -->
-        <!-- <servlet-name>FirstExampleServlet</servlet-name> -->
-        <!-- <url-pattern>/firstexample</url-pattern> -->
-    <!-- </servlet-mapping> -->
+    <servlet-mapping>
+        <servlet-name>CreateTicketsServlet</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
 
 </web-app>

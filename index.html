@@ -4,7 +4,7 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
         <link rel="stylesheet" type="text/css" href="./style.css" />
-        <title>Employee DB</title>
+        <title>Project Issue Tracker</title>
     </head>
     <body>
         <div id="navigation">
@@ -15,23 +15,20 @@
         </div>
         <div id="container">
             <div id="GET">
-                <h3>Get employee data</h3>
+                <h3>Get tickets for your project</h3>
                 <form action="tickets" method="get" >
                     <input type="submit"></input>
                 </form>
             </div>
-            <!-- <div id="POST"> -->
-                <!-- <h3>Add new employee</h3> -->
-                <!-- <form action="./sqlupdate.jsp" method="POST"> -->
-                    <!-- <input type="text" name="Id" placeholder="Id"></input><br> -->
-                    <!-- <input type="text" name="age" placeholder="age"></input><br> -->
-                    <!-- <input type="text" name="first" placeholder="first"></input><br> -->
-                    <!-- <input type="text" name="last" placeholder="last"></input><br> -->
-                    <!-- <input type="submit"></input> -->
-                <!-- </form> -->
-            <!-- </div> -->
+            <div id="POST">
+                <h3>Add new ticket</h3>
+                <form action="create" method="POST">
+                    <input type="text" name="name" placeholder="name of ticket"></input>
+                    <input type="submit"></input>
+                </form>
+            </div>
             <!-- <div id="DELETE"> -->
-                <!-- <h3>Delete employee</h3> -->
+                <!-- <h3>Delete issue ticket</h3> -->
                 <!-- <form action="./sqldelete.jsp" method="DELETE"> -->
                     <!-- <input type="text" name="Id" placeholder="Id" /> -->
                     <!-- <input type="submit" /> -->

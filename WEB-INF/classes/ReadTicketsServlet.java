@@ -12,10 +12,16 @@ public class ReadTicketsServlet extends HttpServlet {
         message = "Your project tickets";
     }
     
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         
         PrintWriter out = response.getWriter();
+        out.println("<!DOCTYPE html><html>");
+        out.println("<head>");
+        out.println("<meta charset=\"UTF-8\" />");
+        out.println("</head>");
+        out.println("<body>");
         out.println("<h1>"+message+"</h1>");
         
         Connection conn = null;
@@ -28,10 +34,12 @@ public class ReadTicketsServlet extends HttpServlet {
             sql = "SELECT * FROM issuetracker";
             ResultSet rs = stmt.executeQuery(sql);
             
-            out.println("<table border='2'></th><th>Ticket Name</th><th>Status</th></tr>");
+            out.println("<table border='2'><th>ID</th><th>Ticket Name</th><th>Description</th><th>Status</th></tr>");
             while (rs.next()) {
                 out.println("<tr>");
+                out.println("<td>"+rs.getInt("id")+"</td>");
                 out.println("<td>"+rs.getString("name")+"</td>");
+                out.println("<td>"+rs.getString("description")+"</td>");
                 out.println("<td>"+rs.getString("status")+"</td>");
                 out.println("</tr>");
             }
@@ -44,11 +52,14 @@ public class ReadTicketsServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        out.println("</body>");
         System.out.println("GET request complete.");
     }
     
     public static Connection getConnection() throws URISyntaxException, SQLException {
-        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+        String envdburl = System.getenv("CLEARDB_DATABASE_URL");
+        if (envdburl == null) {throw new URISyntaxException(envdburl, "null");}
+        URI dbUri = new URI(envdburl);
         
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
