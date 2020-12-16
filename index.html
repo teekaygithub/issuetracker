@@ -24,16 +24,17 @@
                 <h3>Add new ticket</h3>
                 <form action="create" method="POST">
                     <input type="text" name="name" placeholder="name of ticket"></input>
+                    <input type="text" name="description" placeholder="description of issue"></input>
                     <input type="submit"></input>
                 </form>
             </div>
-            <!-- <div id="DELETE"> -->
-                <!-- <h3>Delete issue ticket</h3> -->
-                <!-- <form action="./sqldelete.jsp" method="DELETE"> -->
-                    <!-- <input type="text" name="Id" placeholder="Id" /> -->
-                    <!-- <input type="submit" /> -->
-                <!-- </form> -->
-            <!-- </div> -->
+            <div id="DELETE">
+                <h3>Delete issue ticket</h3>
+                <form action="remove" method="POST">
+                    <input type="text" name="id" placeholder="ID" />
+                    <input type="submit" />
+                </form>
+            </div>
         </div>
     </body>
 </html>

@@ -8,6 +8,7 @@ public class ReadTicketsServlet extends HttpServlet {
     //
     private String message;
     
+    @Override
     public void init() throws ServletException {
         message = "Your project tickets";
     }
@@ -68,6 +69,7 @@ public class ReadTicketsServlet extends HttpServlet {
         return DriverManager.getConnection(dbUrl, username, password);
     }
     
+    @Override
     public void destroy() {
         // do nothing
     }

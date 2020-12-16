@@ -4,7 +4,7 @@ import javax.servlet.http.*;
 import java.sql.*;
 import java.net.*;
 
-public class CreateTicketsServlet extends HttpServlet {
+public class DeleteTicketsServlet extends HttpServlet {
     //
     private String message;
     
@@ -14,11 +14,15 @@ public class CreateTicketsServlet extends HttpServlet {
     }
     
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.doDelete(request, response);
+    }
+    
+    @Override
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = null;
         Statement stmt = null;
-        String name = request.getParameter("name");
-        String description = request.getParameter("description");
+        String id = request.getParameter("id");
         PrintWriter out = response.getWriter();
         
         try {
@@ -26,23 +30,26 @@ public class CreateTicketsServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             conn = CreateTicketsServlet.getConnection();
             stmt = conn.createStatement();
-            if (name != null) {
+            if (id != null) {
                 String sql;
-                sql = "INSERT INTO issuetracker VALUE(\""+name+"\", \"open\", \"0\", \""+description+"\")";
+                sql = "DELETE FROM issuetracker WHERE id = \""+id+"\"";
                 boolean rs = stmt.execute(sql);
-                out.println("<p>POST request complete!</p>");
+                out.println("<p>DELETE request complete!</p>");
             } else {
-                out.println("<p>Request cannot be processed, please enter a name for the desired ticket.</p>");
+                out.println("<p>Request cannot be processed, please enter the ID for the ticket you wish to remove.</p>");
             }
             out.println("<a href=\"index.html\">Back to home</a>");
         } catch (SQLException se) {
             se.printStackTrace();
+            out.println("<p>SQL exception!</p>");
         } catch (URISyntaxException use) {
             use.printStackTrace();
+            out.println("<p>URI exception!</p>");
         } catch (Exception e) {
             e.printStackTrace();
+            out.println("<p>Exception caught!</p>");
         }
-        System.out.println("POST request complete.");
+        System.out.println("DELETE request complete.");
     }
     
     public static Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
@@ -57,7 +64,7 @@ public class CreateTicketsServlet extends HttpServlet {
         
         return DriverManager.getConnection(dbUrl, username, password);
     }
-    
+ 
     @Override
     public void destroy() {
         // do nothing

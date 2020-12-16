@@ -18,6 +18,10 @@
         <servlet-name>CreateTicketsServlet</servlet-name>
         <servlet-class>CreateTicketsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteTicketsServlet</servlet-name>
+        <servlet-class>DeleteTicketsServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>ReadTicketsServlet</servlet-name>
@@ -26,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>CreateTicketsServlet</servlet-name>
         <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTicketsServlet</servlet-name>
+        <url-pattern>/remove</url-pattern>
     </servlet-mapping>
 
 </web-app>
