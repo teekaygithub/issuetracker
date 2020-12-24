@@ -12,7 +12,7 @@ public class GetConnectionUtilities {
     private static String password = "";
     
     
-    public static Connection getConnection() throws URISyntaxException, SQLException {
+    public static Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
         
         if (System.getenv("CLEARDB_DATABASE_URL") == null) {isRemote = false;}
         
@@ -30,6 +30,7 @@ public class GetConnectionUtilities {
             password = "poweroverwhelming";
         }
         
+        Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(dbUrl, username, password);
     }
 }
