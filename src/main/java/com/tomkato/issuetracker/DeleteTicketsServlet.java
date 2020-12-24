@@ -1,8 +1,12 @@
+package com.tomkato.issuetracker;
+
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import java.net.*;
+
+// import com.tomkato.issuetracker.GetConnectionUtilities;
 
 public class DeleteTicketsServlet extends HttpServlet {
     //
@@ -28,7 +32,7 @@ public class DeleteTicketsServlet extends HttpServlet {
         try {
             response.setContentType("text/html");
             out.println("<!DOCTYPE html>");
-            conn = CreateTicketsServlet.getConnection();
+            conn = GetConnectionUtilities.getConnection();
             stmt = conn.createStatement();
             if (id != null) {
                 String sql;
@@ -50,19 +54,6 @@ public class DeleteTicketsServlet extends HttpServlet {
             out.println("<p>Exception caught!</p>");
         }
         System.out.println("DELETE request complete.");
-    }
-    
-    public static Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        String envdburl = System.getenv("CLEARDB_DATABASE_URL");
-        if (envdburl == null) {throw new URISyntaxException(envdburl, "null");}
-        URI dbUri = new URI(envdburl);
-        
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
-        
-        return DriverManager.getConnection(dbUrl, username, password);
     }
  
     @Override

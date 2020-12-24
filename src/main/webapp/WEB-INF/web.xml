@@ -12,15 +12,15 @@
 
     <servlet>
         <servlet-name>ReadTicketsServlet</servlet-name>
-        <servlet-class>ReadTicketsServlet</servlet-class>
+        <servlet-class>com.tomkato.issuetracker.ReadTicketsServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateTicketsServlet</servlet-name>
-        <servlet-class>CreateTicketsServlet</servlet-class>
+        <servlet-class>com.tomkato.issuetracker.CreateTicketsServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteTicketsServlet</servlet-name>
-        <servlet-class>DeleteTicketsServlet</servlet-class>
+        <servlet-class>com.tomkato.issuetracker.DeleteTicketsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

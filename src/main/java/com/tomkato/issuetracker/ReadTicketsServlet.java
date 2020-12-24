@@ -1,8 +1,12 @@
+package com.tomkato.issuetracker;
+
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import java.net.*;
+
+// import com.tomkato.issuetracker.GetConnectionUtilities;
 
 public class ReadTicketsServlet extends HttpServlet {
     //
@@ -29,7 +33,7 @@ public class ReadTicketsServlet extends HttpServlet {
         Statement stmt = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = ReadTicketsServlet.getConnection();
+            conn = GetConnectionUtilities.getConnection();
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * FROM issuetracker";
@@ -55,18 +59,6 @@ public class ReadTicketsServlet extends HttpServlet {
         }
         out.println("</body>");
         System.out.println("GET request complete.");
-    }
-    
-    public static Connection getConnection() throws URISyntaxException, SQLException {
-        String envdburl = System.getenv("CLEARDB_DATABASE_URL");
-        if (envdburl == null) {throw new URISyntaxException(envdburl, "null");}
-        URI dbUri = new URI(envdburl);
-        
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
-        
-        return DriverManager.getConnection(dbUrl, username, password);
     }
     
     @Override
