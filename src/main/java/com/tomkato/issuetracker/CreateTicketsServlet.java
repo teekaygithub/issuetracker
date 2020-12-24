@@ -32,7 +32,7 @@ public class CreateTicketsServlet extends HttpServlet {
             stmt = conn.createStatement();
             if (name != null) {
                 String sql;
-                sql = "INSERT INTO issuetracker VALUE(\""+name+"\", \"open\", \"0\", \""+description+"\")";
+                sql = "INSERT INTO issuetracker (name, status, description) VALUES(\""+name+"\", \"open\", \""+description+"\")";
                 boolean rs = stmt.execute(sql);
                 out.println("<p>POST request complete!</p>");
             } else {
