@@ -39,16 +39,17 @@ public class ReadTicketsServlet extends HttpServlet {
             sql = "SELECT * FROM issuetracker";
             ResultSet rs = stmt.executeQuery(sql);
             
-            out.println("<table border='2'><th>ID</th><th>Ticket Name</th><th>Description</th><th>Status</th></tr>");
+            out.println("<table border='2'><th>ID</th><th>Project</th><th>Ticket Name</th><th>Description</th><th>Status</th></tr>");
             while (rs.next()) {
                 out.println("<tr>");
                 out.println("<td>"+rs.getInt("id")+"</td>");
+                out.println("<td>"+rs.getString("project")+"</td>");
                 out.println("<td>"+rs.getString("name")+"</td>");
                 out.println("<td>"+rs.getString("description")+"</td>");
                 out.println("<td>"+rs.getString("status")+"</td>");
                 out.println("</tr>");
             }
-            out.println("</table>");
+            out.println("</table><br>");
             out.println("<a href=\"index.html\">Back to Home</a>");
         } catch (SQLException se) {
             se.printStackTrace();
