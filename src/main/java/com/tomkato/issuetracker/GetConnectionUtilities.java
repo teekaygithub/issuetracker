@@ -14,21 +14,12 @@ public class GetConnectionUtilities {
     
     public static Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
         
-        if (System.getenv("CLEARDB_DATABASE_URL") == null) {isRemote = false;}
+        String envdburl = System.getenv("CLEARDB_DATABASE_URL");
+        URI dbUri = new URI(envdburl);
         
-        if (isRemote) {
-            String envdburl = System.getenv("CLEARDB_DATABASE_URL");
-            URI dbUri = new URI(envdburl);
-            
-            String username = dbUri.getUserInfo().split(":")[0];
-            String password = dbUri.getUserInfo().split(":")[1];
-            String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
-        } else {
-            // TODO: convert to environment variables
-            dbUrl = "jdbc:mysql://localhost:3306/sandbox";
-            username = "root";
-            password = "poweroverwhelming";
-        }
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
         
         Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(dbUrl, username, password);
