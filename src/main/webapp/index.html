@@ -16,13 +16,13 @@
             <a id="nav-home" href="index.html">Home</a>
         </div>
         <div id="container" class="row justify-content-center" >
-            <div class="col">
+            <div class="col pt-3 pb-3" id="ticket-container">
                 <h3 class="toolbar">Get tickets for your project</h3>
                 <form action="tickets" method="get" >
                     <input type="submit" value="Get your tickets"></input>
                 </form>
             </div>
-            <div class="col">
+            <div class="col pt-3 pb-3" id="ticket-container" >
                 <h3 class="toolbar">Add new ticket</h3>
                 <form action="create" method="POST">
                     <p><label class="input-label">Issue name: </label><input type="text" name="name" placeholder="name of ticket" /></p>
@@ -31,7 +31,7 @@
                     <input type="submit" value="Create ticket"></input>
                 </form>
             </div>
-            <div class="col">
+            <div class="col pt-3 pb-3" id="ticket-container" >
                 <h3 class="toolbar">Delete issue ticket</h3>
                 <form action="remove" method="GET">
                     <p><label class="input-label">Ticket ID: </label><input type="text" name="id" placeholder="ID" />

@@ -22,11 +22,8 @@ body {
     text-align: center;
 }
 
-.ticket-container {
-    margin: 20px auto;
-    border: 3px solid;
-    border-radius: 5px;
-    width: 500px;
+#ticket-container {
+    padding: 30px;
 }
 
 .toolbar {
