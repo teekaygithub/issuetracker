@@ -27,7 +27,7 @@ public class CreateTicketsServlet extends HttpServlet {
         Statement stmt = null;
         String submit = request.getParameter("submit");
         log.debug("Submit type: {}", submit);
-        if (submit.equals("PUT")) {
+        if ((submit != null) && (submit.equals("PUT"))) {
             doPut(request, response);
             return;
         }
