@@ -15,7 +15,7 @@
         <jsp:useBean id="myDate" class="java.util.Date" />
         <h2>Your Project Tickets</h2>
         <div class="row justify-content-center" id="table-container" >
-            <div class="col-sm-*">
+            <div class="col-sm-* table-responsive">
                 <table border="2" class="table table-striped table-bordered">
                     <p>Today's date: <%= myDate %></p>
                     <tr>
