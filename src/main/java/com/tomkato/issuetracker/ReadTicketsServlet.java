@@ -5,8 +5,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import java.net.*;
-
-// import com.tomkato.issuetracker.GetConnectionUtilities;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadTicketsServlet extends HttpServlet {
     //
@@ -31,6 +31,7 @@ public class ReadTicketsServlet extends HttpServlet {
         
         Connection conn = null;
         Statement stmt = null;
+        List<Ticket> tickets = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = GetConnectionUtilities.getConnection();
@@ -39,18 +40,17 @@ public class ReadTicketsServlet extends HttpServlet {
             sql = "SELECT * FROM issuetracker";
             ResultSet rs = stmt.executeQuery(sql);
             
-            out.println("<table border='2'><th>ID</th><th>Project</th><th>Ticket Name</th><th>Description</th><th>Status</th></tr>");
             while (rs.next()) {
-                out.println("<tr>");
-                out.println("<td>"+rs.getInt("id")+"</td>");
-                out.println("<td>"+rs.getString("project")+"</td>");
-                out.println("<td>"+rs.getString("name")+"</td>");
-                out.println("<td>"+rs.getString("description")+"</td>");
-                out.println("<td>"+rs.getString("status")+"</td>");
-                out.println("</tr>");
+                Ticket ticket = new Ticket();
+                ticket.setId(Integer.toString(rs.getInt("id")));
+                ticket.setName(rs.getString("name"));
+                ticket.setProject(rs.getString("project"));
+                ticket.setDescription(rs.getString("description"));
+                ticket.setStatus(rs.getString("status"));
+                tickets.add(ticket);
             }
-            out.println("</table><br>");
-            out.println("<a href=\"index.html\">Back to Home</a>");
+            request.setAttribute("tickets", tickets);
+            request.getRequestDispatcher("tickettable.jsp").forward(request, response);
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (URISyntaxException use) {
