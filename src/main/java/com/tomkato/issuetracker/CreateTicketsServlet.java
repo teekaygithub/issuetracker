@@ -35,6 +35,7 @@ public class CreateTicketsServlet extends HttpServlet {
         String name = request.getParameter("name");
         String project = request.getParameter("project");
         String description = request.getParameter("description");
+        log.info("name: {}, project: {}, description: {}", name, project, description);
         PrintWriter out = response.getWriter();
         
         try {
@@ -54,6 +55,7 @@ public class CreateTicketsServlet extends HttpServlet {
                 description + 
                 "\")";
                 boolean rs = stmt.execute(sql);
+                log.info("SQL command: {}", sql);
                 out.println("<p>POST request complete!</p>");
             } else {
                 out.println("<p>Request cannot be processed, please enter a name for the desired ticket.</p>");

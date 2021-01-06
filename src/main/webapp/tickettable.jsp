@@ -19,8 +19,8 @@
                 <p>Today's date: <%= myDate %></p>
                 <tr>
                     <th>ID</th>
-                    <th>Project</th>
                     <th>Ticket Name</th>
+                    <th>Project</th>
                     <th>Description</th>
                     <th>Status</th>
                     <th>Change Status</th>
